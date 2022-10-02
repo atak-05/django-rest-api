@@ -32,4 +32,6 @@ class PostCreateAPIView(CreateAPIView):
     #Burada sorguyu yazan user görüntülemek için bu mettotu kullandık#
     def perform_create(self, serializer):
         serializer.save(user= self.request.user)
+        
         #mail gönderme işlemleride burada yapabiliriz
+        
