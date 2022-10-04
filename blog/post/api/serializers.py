@@ -15,8 +15,18 @@ class PostSerializers(serializers.ModelSerializer):
                  'image',
                  'slug',
                  'created',
+                 'modified_by'
                   ]
-
+        
+        
+class PostUpdateCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = [
+            'title',
+            'content',
+            'image',
+        ]
 
 
 
