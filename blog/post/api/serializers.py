@@ -1,3 +1,4 @@
+from cgitb import lookup
 from dataclasses import field, fields
 from rest_framework import serializers
 from post.models import Post
@@ -6,20 +7,31 @@ from post.models import Post
     # content = serializers.CharField(max_length=200)
     
 class PostSerializers(serializers.ModelSerializer):
+    url = serializers.  HyperlinkedIdentityField(
+    view_name='post:detail',
+    lookup_field = 'slug'
+ )
+    username = serializers.SerializerMethodField()
     class Meta:
         model = Post
         fields = [ 
-                 'user',
+                 'username',
                  'title',
                  'content',
                  'image',
-                 'slug',
+                 'url',
                  'created',
-                 'modified_by'
+                 'modified_by',
+                 'draft'
                   ]
-        
+    def get_username(self, obj):
+        return str(obj.user.username)
         
 class PostUpdateCreateSerializer(serializers.ModelSerializer):
+   
+   
+   
+   
     class Meta:
         model = Post
         fields = [
