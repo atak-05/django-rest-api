@@ -1,4 +1,4 @@
-from dataclasses import fields
+from dataclasses import field, fields
 from comment.models import Comment
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from rest_framework import serializers
@@ -32,4 +32,10 @@ class CommentListSerializers(ModelSerializer):
         if obj.any_children:
             return CommentListSerializers(obj.children(), many=True).data
 
-                     
+class CommentDeleteUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = [
+            "content"
+            ]
+                         
