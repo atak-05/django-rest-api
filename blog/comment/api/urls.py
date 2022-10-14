@@ -1,17 +1,17 @@
 
 from rest_framework import serializers
-from django.urls import path,include
+from django.urls import path, include
 
 from comment.api.views import (
-                            CommentCreateAPIView,CommentListAPIView,
-                            CommentDeleteAPIView,CommentUpdateAPIView,
-                            )
+    CommentCreateAPIView, CommentListAPIView,
+    #CommentDeleteAPIView, 
+    CommentUpdateAPIView,
+)
 
-app_name="comment"
+app_name = "comment"
 urlpatterns = [
     path('create', CommentCreateAPIView.as_view(), name='create'),
     path('list', CommentListAPIView.as_view(), name='list'),
-    path('delete/<pk>', CommentDeleteAPIView.as_view(), name='delete'),
+    # path('delete/<pk>', CommentDeleteAPIView.as_view(), name='delete'),
     path('update/<pk>', CommentUpdateAPIView.as_view(), name='update'),
-    ]
-
+]

@@ -1,3 +1,4 @@
+from venv import create
 from rest_framework.generics import (ListAPIView,
                                      RetrieveAPIView,
                                      RetrieveUpdateAPIView,
@@ -13,8 +14,10 @@ from rest_framework.permissions import(
     IsAuthenticated,
     IsAdminUser,
 )
+#Create Model Mixin
+from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,)
 
-class PostListAPIView(ListAPIView):
+class PostListAPIView(ListAPIView ):
     serializer_class = PostSerializers
     filter_backends = [SearchFilter, OrderingFilter]
     search_fields = ['title']
@@ -24,25 +27,33 @@ class PostListAPIView(ListAPIView):
         queryset = Post.objects.filter(draft=False)
         return queryset
     
+    # def post(self, request,*args, **kwargs):
+        # return self.create(request,*args, **kwargs)
+    # #Postu oluşturan kullanıcın kendisi olmasını için bunu yapıyoruz.
+    # def perform_create(self, serializer):
+        # serializer.save(user = self.request.user)   
     
 class PostDetailAPIView(RetrieveAPIView):
     queryset  = Post.objects.all()
     serializer_class = PostSerializers
     lookup_field = 'slug'
 
-class PostDeleteAPIView(DestroyAPIView):
-    queryset  = Post.objects.all()
-    serializer_class = PostSerializers
-    lookup_field = 'slug'
-    permission_classes = [IsOwner]  
+# class PostDeleteAPIView(DestroyAPIView):
+    # queryset  = Post.objects.all()
+    # serializer_class = PostSerializers
+    # lookup_field = 'slug'
+    # permission_classes = [IsOwner]  
 
-class PostUpdateAPIView(RetrieveUpdateAPIView):
+class PostUpdateAPIView(RetrieveUpdateAPIView, DestroyModelMixin):
     queryset  = Post.objects.all()
     serializer_class = PostSerializers
     lookup_field = 'slug'
     permission_classes = [IsOwner]
     def perform_update(self, serializer):
         serializer.save(modified_by = self.request.user)   
+        
+    def delete(self, request,*args, **kwargs):
+        return self.destroy(request,*args, **kwargs)
 class PostCreateAPIView(CreateAPIView):
     queryset  = Post.objects.all()
     serializer_class = PostSerializers
