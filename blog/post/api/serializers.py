@@ -30,8 +30,6 @@ class PostSerializers(serializers.ModelSerializer):
 class PostUpdateCreateSerializer(serializers.ModelSerializer):
    
    
-   
-   
     class Meta:
         model = Post
         fields = [

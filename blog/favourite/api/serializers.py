@@ -15,3 +15,4 @@ class FavouriteListCreateAPISerializer(ModelSerializer):
         if queryset.exists():
             raise serializers.ValidationError("Already added to favorites")
         return attrs
+    
