@@ -21,9 +21,10 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/post/', include('post.api.urls', namespace= 'post') ),
+    path('api/post/', include('post.api.urls', namespace= 'post') ),#namepace HyperlinkedIdentityField da parametre olarak kullanılıyor.
     path('api/comment/', include('comment.api.urls', namespace= 'comment') ),
     path('api/favourite/', include('favourite.api.urls', namespace= 'favourite') ),
 
 
-] + static (settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+] + static (settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) # görselleri açmak için yapılan bir işlem
+

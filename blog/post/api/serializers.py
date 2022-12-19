@@ -7,9 +7,9 @@ from post.models import Post
     # content = serializers.CharField(max_length=200)
     
 class PostSerializers(serializers.ModelSerializer):
-    url = serializers.  HyperlinkedIdentityField(
+    url = serializers.  HyperlinkedIdentityField( 
     view_name='post:detail',
-    lookup_field = 'slug'
+    lookup_field = 'slug' #slug'a göre linkleme işlemi yapılıyor.
  )
     username = serializers.SerializerMethodField()
     class Meta:
@@ -24,7 +24,7 @@ class PostSerializers(serializers.ModelSerializer):
                  'modified_by',
                  'draft'
                   ]
-    def get_username(self, obj):
+    def get_username(self, obj): #id yerine kullanıcı adını listelememizi sağlar.
         return str(obj.user.username)
         
 class PostUpdateCreateSerializer(serializers.ModelSerializer):

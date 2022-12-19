@@ -4,7 +4,7 @@ from comment.api.permissions import IsOwner
 
 #mixinsler
 from rest_framework.mixins import UpdateModelMixin, RetrieveModelMixin, DestroyModelMixin
-from comment.api.serialiizers import CommentCreateSerializers, CommentListSerializers, CommentDeleteUpdateSerializer
+from comment.api.serializers import CommentCreateSerializers, CommentListSerializers, CommentDeleteUpdateSerializer
 from comment.models import Comment
 
 

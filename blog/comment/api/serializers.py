@@ -9,17 +9,17 @@ from post.models import Post
 class CommentCreateSerializers(ModelSerializer):
     class Meta:
         model = Comment
-        exclude = ['created']
+        exclude = ['created']#sadece created kullanılmayacak
 
     def validate(self, attrs):
-        if (attrs["parent"]):
+        if (attrs["parent"]): #Yorumun parentı varsa 
             if attrs["parent"].post != attrs["post"]:
-                raise serializers.ValidationError("somethinh went wrong")
+                raise serializers.ValidationError("something went wrong")
         return attrs
 
 # class CommentChildSerializer(ModelSerializer):
     # class Meta:
-        # model= Comment
+        # model= Comment 
         # fields= "__all__"
 
 

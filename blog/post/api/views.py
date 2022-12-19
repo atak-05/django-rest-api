@@ -12,12 +12,11 @@ from post.models import  Post
 from rest_framework.filters import SearchFilter,OrderingFilter
 from rest_framework.permissions import(
     IsAuthenticated,
-    IsAdminUser,
 )
 #Create Model Mixin
 from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,)
 
-class PostListAPIView(ListAPIView ):
+class PostListAPIView(ListAPIView): #Create Model Mixini de ekleyerek aynı sayfada hem ekleme hemde listeleme yapabiliriz.
     serializer_class = PostSerializers
     filter_backends = [SearchFilter, OrderingFilter]
     search_fields = ['title']
