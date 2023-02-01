@@ -1,8 +1,6 @@
 
-from django.urls import path,include
-
-
-from .views import FavouriteAPIView,FavouriteListCreateAPIView
+from django.urls import path
+from favourite.api.views import FavouriteListCreateAPIView, FavouriteAPIView
 
 app_name="favourite"
 urlpatterns = [
