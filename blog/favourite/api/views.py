@@ -26,3 +26,4 @@ class FavouriteAPIView(RetrieveUpdateDestroyAPIView):
     lookup_field= 'pk'
     permission_classes= [IsOwner]
     
+
