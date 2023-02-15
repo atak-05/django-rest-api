@@ -34,7 +34,8 @@ REST_FRAMEWORK = {
     ],
 }
 SIMPLE_JWT = {
-    'ACESS_TOKEN_LIFETIME' : timedelta(minutes=15)
+    'ACCESS_TOKEN_LIFETIME' : timedelta(minutes=15),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
 
 
@@ -52,6 +53,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'comment',
     'favourite',
+    'account'
 ]
 
 MIDDLEWARE = [
